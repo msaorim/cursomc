@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,13 +20,18 @@ public class Cidade implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@ManyToOne
+	@JoinColumn(name = "estado_fk")
+	private Estado estado;
 
 	public Cidade() {
 	}
 
-	public Cidade(Long id, String nome) {
+	public Cidade(Long id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
+		this.estado = estado;
 	}
 
 	public String getNome() {
@@ -38,6 +45,15 @@ public class Cidade implements Serializable {
 	public Long getId() {
 		return id;
 	}
+	
+	public Estado getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -55,5 +71,4 @@ public class Cidade implements Serializable {
 		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }

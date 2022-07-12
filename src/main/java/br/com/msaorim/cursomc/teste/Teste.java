@@ -40,9 +40,9 @@ public class Teste implements CommandLineRunner {
 		var est1 = new Estado(null, "MG");
 		var est2 = new Estado(null, "SP");
 		
-		var cid1 = new Cidade(null, "Uberlândia");
-		var cid2 = new Cidade(null, "São Paulo");
-		var cid3 = new Cidade(null, "Campinas");
+		var cid1 = new Cidade(null, "Uberlândia", est1);
+		var cid2 = new Cidade(null, "São Paulo", est2);
+		var cid3 = new Cidade(null, "Campinas", est2);
 		
 		cat1.setProdutos(Arrays.asList(pd1, pd2, pd3));
 		cat2.setProdutos(Arrays.asList(pd2));

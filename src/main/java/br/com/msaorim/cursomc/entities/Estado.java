@@ -1,13 +1,18 @@
 package br.com.msaorim.cursomc.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "TB_ESTADO")
@@ -18,6 +23,11 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	
+	@OneToMany(mappedBy = "estado")
+	@JsonIgnore
+	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {
 	}
@@ -38,6 +48,15 @@ public class Estado implements Serializable {
 	public Long getId() {
 		return id;
 	}
+	
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
+	
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -55,6 +74,5 @@ public class Estado implements Serializable {
 		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 }
