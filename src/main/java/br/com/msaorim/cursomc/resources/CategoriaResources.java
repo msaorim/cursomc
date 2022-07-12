@@ -1,7 +1,6 @@
 package br.com.msaorim.cursomc.resources;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,8 @@ public class CategoriaResources {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Optional<Categoria>> findById(@PathVariable long id){
-		Optional<Categoria> obj = categoriaService.findById(id);
+	public ResponseEntity<Categoria> findById(@PathVariable long id){
+		Categoria obj = categoriaService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 

@@ -1,11 +1,11 @@
 package br.com.msaorim.cursomc.resources;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +26,14 @@ public class ProdutoResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Optional<Produto>> findById(long id){
-		Optional<Produto> obj = produtoService.findById(id);
+	public ResponseEntity<Produto> findById(@PathVariable long id){
+		Produto obj = produtoService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	//@GetMapping(value = "/{id}")
+	//public ResponseEntity<Optional<Produto>> findById(@PathVariable long id){
+	//	Optional<Produto> obj = produtoService.findById(id);
+	//	return ResponseEntity.ok().body(obj);
+	//}
 }
