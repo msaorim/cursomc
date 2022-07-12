@@ -7,8 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.msaorim.cursomc.entities.Categoria;
+import br.com.msaorim.cursomc.entities.Cidade;
+import br.com.msaorim.cursomc.entities.Estado;
 import br.com.msaorim.cursomc.entities.Produto;
 import br.com.msaorim.cursomc.repositories.CategoriaRepository;
+import br.com.msaorim.cursomc.repositories.CidadeRepository;
+import br.com.msaorim.cursomc.repositories.EstadoRepository;
 import br.com.msaorim.cursomc.repositories.ProdutoRepository;
 
 @Configuration
@@ -18,7 +22,11 @@ public class Teste implements CommandLineRunner {
 	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
-
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -29,6 +37,13 @@ public class Teste implements CommandLineRunner {
 		var pd2 = new Produto(null, "Impressora", 800.0);
 		var pd3 = new Produto(null, "Mouse", 80.0);
 		
+		var est1 = new Estado(null, "MG");
+		var est2 = new Estado(null, "SP");
+		
+		var cid1 = new Cidade(null, "Uberlândia");
+		var cid2 = new Cidade(null, "São Paulo");
+		var cid3 = new Cidade(null, "Campinas");
+		
 		cat1.setProdutos(Arrays.asList(pd1, pd2, pd3));
 		cat2.setProdutos(Arrays.asList(pd2));
 		
@@ -36,8 +51,12 @@ public class Teste implements CommandLineRunner {
 		pd2.setCategorias(Arrays.asList(cat1, cat2));
 		pd3.setCategorias(Arrays.asList(cat1));
 		
+		
+		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(pd1, pd2, pd3));
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 	}
 
 }

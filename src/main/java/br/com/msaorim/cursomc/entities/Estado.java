@@ -1,20 +1,17 @@
 package br.com.msaorim.cursomc.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_CATEGORIA")
-public class Categoria implements Serializable {
+@Table(name = "TB_ESTADO")
+public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -22,14 +19,10 @@ public class Categoria implements Serializable {
 	private Long id;
 	private String nome;
 	
-	// colocando um jsonignore aqui. lista produto com suas categorias
-	@ManyToMany(mappedBy = "categorias")
-	private List<Produto> produtos = new ArrayList<>();
-	
-	public Categoria() {
+	public Estado() {
 	}
 
-	public Categoria(Long id, String nome) {
+	public Estado(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
@@ -59,16 +52,8 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
 	}
 	
 	
